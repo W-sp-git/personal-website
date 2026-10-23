@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN" data-page="home">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#081723" />
+    <meta
+      name="description"
+      content="王舒鹏的个人空间。伊犁师范大学计算机科学与技术专业，一名努力向 AGI 发展的学生。在峡湾、雪原与极光之间，向未知探索。"
+    />
+    <meta property="og:title" content="向北 NORTHBOUND · 王舒鹏" />
+    <meta
+      property="og:description"
+      content="向北，去往未知。王舒鹏的交互式极北个人空间。"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://wang-shupeng.warmflame.chatgpt.site/"
+    />
+    <meta
+      property="og:image"
+      content="https://wang-shupeng.warmflame.chatgpt.site/assets/landscapes/fjord-night.webp"
+    />
+    <link rel="canonical" href="https://wang-shupeng.warmflame.chatgpt.site/" />
+    <title>向北 NORTHBOUND · 王舒鹏</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/assets/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/landscapes/fjord-night.webp"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="preload" href="/assets/landscapes/fjord-day.webp" as="image" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script>
+      document.documentElement.dataset.page = location.pathname.startsWith(
+        "/about",
+      )
+        ? "about"
+        : "home";
+      try {
+        document.documentElement.style.setProperty(
+          "--night",
+          localStorage.getItem("northbound-light") || "0.6",
+        );
+      } catch {}
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "王舒鹏",
+        "alternateName": "Wang Shupeng",
+        "url": "https://wang-shupeng.warmflame.chatgpt.site",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "伊犁师范大学"
+        },
+        "sameAs": [
+          "https://github.com/W-sp-git",
+          "https://blog.csdn.net/wsp226"
+        ]
+      }
+    </script>
+    <script defer src="/assets/vendor/gsap.min.js"></script>
+    <script defer src="/assets/vendor/ScrollTrigger.min.js"></script>
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳转到主要内容</a>
+    <div class="scene" aria-hidden="true">
+      <div class="scene-fallback">
+        <img
+          data-scene-image="0"
+          src="/assets/landscapes/fjord-day.webp"
+          alt=""
+          width="1536"
+          height="1024"
+          fetchpriority="high"
+        />
+        <img
+          data-scene-image="1"
+          src="/assets/landscapes/fjord-night.webp"
+          alt=""
+          width="1536"
+          height="1024"
+          fetchpriority="high"
+        />
+        <img
+          data-scene-image="2"
+          data-src="/assets/landscapes/snow-day.webp"
+          alt=""
+          width="1536"
+          height="1024"
+        />
+        <img
+          data-scene-image="3"
+          data-src="/assets/landscapes/snow-night.webp"
+          alt=""
+          width="1536"
+          height="1024"
+        />
+        <img
+          data-scene-image="4"
+          data-src="/assets/landscapes/coast-day.webp"
+          alt=""
+          width="1536"
+          height="1024"
+        />
+        <img
+          data-scene-image="5"
+          data-src="/assets/landscapes/coast-night.webp"
+          alt=""
+          width="1536"
+          height="1024"
+        />
+      </div>
+      <canvas id="landscape"></canvas>
+      <canvas id="weather"></canvas>
+      <div class="scene-scrim"></div>
+    </div>
+    <header class="site-header frame">
+      <a
+        class="wordmark"
+        href="/"
+        data-route
+        aria-label="王舒鹏的个人空间，返回极境"
+        >WSP<span>.</span></a
+      >
+      <div class="header-right">
+        <nav class="main-nav" aria-label="主导航">
+          <a href="/" data-route data-nav="home" aria-current="page">极境</a
+          ><a href="/about/" data-route data-nav="about">关于我</a>
+        </nav>
+        <span class="header-divider" aria-hidden="true"></span>
+        <button
+          class="utility sound-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="开启环境音"
+          title="开启环境音"
+        >
+          <img
+            class="icon"
+            src="/assets/icons/speaker-slash.svg"
+            alt=""
+            width="18"
+            height="18"
+          /><span>环境音</span>
+        </button>
+        <button
+          class="utility motion-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="暂停动态效果"
+          title="暂停动态效果"
+        >
+          <img
+            class="icon"
+            src="/assets/icons/pause.svg"
+            alt=""
+            width="16"
+            height="16"
+          />
+        </button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="journey" data-view="home">
+        <section
+          class="chapter chapter-fjord"
+          id="fjord"
+          aria-labelledby="home-title"
+        >
+          <div class="chapter-content frame">
+            <h1 id="home-title">NORTHBOUND</h1>
+            <p class="hero-subtitle">向北，去往未知。</p>
+            <p class="hero-identity">
+              王舒鹏 <span aria-hidden="true">·</span> 计算机科学与技术
+            </p>
+            <a class="journey-link" href="#snow" data-chapter-link="1"
+              >去往雪原
+              <img
+                class="icon"
+                src="/assets/icons/arrow-down.svg"
+                alt=""
+                width="16"
+                height="16"
+            /></a>
+          </div>
+        </section>
+        <section
+          class="chapter chapter-snow"
+          id="snow"
+          aria-labelledby="snow-title"
+        >
+          <div class="chapter-content frame">
+            <h2 id="snow-title">让好奇，<br />走得更远。</h2>
+            <p class="chapter-copy">
+              在计算机科学中学习，<br />向 AGI 的方向持续探索。
+            </p>
+            <a class="journey-link" href="#aurora" data-chapter-link="2"
+              >继续追光
+              <img
+                class="icon"
+                src="/assets/icons/arrow-down.svg"
+                alt=""
+                width="16"
+                height="16"
+            /></a>
+          </div>
+        </section>
+        <section
+          class="chapter chapter-aurora"
+          id="aurora"
+          aria-labelledby="aurora-title"
+        >
+          <div class="chapter-content frame">
+            <h2 id="aurora-title">于极夜里，<br />遇见微光。</h2>
+            <p class="chapter-copy">向未知的探索，也从这里开始。</p>
+            <a class="journey-link" href="/about/" data-route
+              >认识一下我
+              <img
+                class="icon"
+                src="/assets/icons/arrow-right.svg"
+                alt=""
+                width="18"
+                height="18"
+            /></a>
+          </div>
+        </section>
+      </div>
+      <section
+        class="about-page frame"
+        data-view="about"
+        aria-labelledby="about-title"
+      >
+        <div class="about-intro">
+          <p class="about-greeting">你好，我是</p>
+          <h1 id="about-title">王舒鹏</h1>
+          <p class="about-english">WANG SHUPENG</p>
+          <p class="about-statement">
+            一名努力向 <strong>AGI</strong> 发展的学生。
+          </p>
+          <a class="journey-link return-journey" href="/" data-route
+            ><img
+              class="icon"
+              src="/assets/icons/arrow-left.svg"
+              alt=""
+              width="18"
+              height="18"
+            />
+            回到极北旅程</a
+          >
+        </div>
+        <div class="about-details">
+          <dl class="academic">
+            <div>
+              <dt>就读院校</dt>
+              <dd>伊犁师范大学</dd>
+            </div>
+            <div>
+              <dt>所学专业</dt>
+              <dd>计算机科学与技术</dd>
+            </div>
+          </dl>
+          <nav class="profile-links" aria-label="个人链接">
+            <a
+              href="https://github.com/W-sp-git"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span><strong>GitHub</strong><small>W-sp-git</small></span
+              ><img
+                class="icon"
+                src="/assets/icons/arrow-up-right.svg"
+                alt=""
+                width="23"
+                height="23"
+              /><span class="sr-only">，在新标签页打开</span></a
+            >
+            <a
+              href="https://blog.csdn.net/wsp226"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span><strong>博客</strong><small>CSDN · wsp226</small></span
+              ><img
+                class="icon"
+                src="/assets/icons/arrow-up-right.svg"
+                alt=""
+                width="23"
+                height="23"
+              /><span class="sr-only">，在新标签页打开</span></a
+            >
+          </nav>
+        </div>
+        <p class="about-footer">
+          <span>© <span data-year>2026</span> 王舒鹏</span>
+          <span class="about-credit">极北风光为 AI 生成的艺术场景</span>
+        </p>
+      </section>
+    </main>
+    <nav class="chapter-nav" aria-label="旅程章节">
+      <a href="#fjord" data-chapter-link="0" aria-current="step"
+        ><span>峡湾</span><i aria-hidden="true"></i></a
+      ><a href="#snow" data-chapter-link="1"
+        ><span>雪原</span><i aria-hidden="true"></i></a
+      ><a href="#aurora" data-chapter-link="2"
+        ><span>追光</span><i aria-hidden="true"></i
+      ></a>
+    </nav>
+    <footer class="scene-controls frame">
+      <div class="light-control">
+        <button type="button" data-light="0" aria-label="切换到白昼">
+          白昼</button
+        ><label class="sr-only" for="daylight">调整昼夜光照</label
+        ><input
+          id="daylight"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value="60"
+          aria-valuetext="蓝调时刻"
+        /><button type="button" data-light="100" aria-label="切换到极夜">
+          极夜</button
+        ><output id="light-state" for="daylight">蓝调</output>
+      </div>
+      <nav class="footer-links" aria-label="快捷链接">
+        <a
+          href="https://github.com/W-sp-git"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub
+          <img
+            class="icon"
+            src="/assets/icons/arrow-up-right.svg"
+            alt=""
+            width="14"
+            height="14" /></a
+        ><a
+          href="https://blog.csdn.net/wsp226"
+          target="_blank"
+          rel="noopener noreferrer"
+          >博客
+          <img
+            class="icon"
+            src="/assets/icons/arrow-up-right.svg"
+            alt=""
+            width="14"
+            height="14"
+        /></a>
+      </nav>
+    </footer>
+    <div class="fog-transition" aria-hidden="true"></div>
+    <p class="loading-note" hidden>正在抵达极北…</p>
+    <p
+      class="screen-reader-status sr-only"
+      role="status"
+      aria-live="polite"
+    ></p>
+    <noscript
+      ><style>
+        .scene-fallback img:first-child {
+          opacity: 0.4 !important;
+        }
+        .scene-fallback img:nth-child(2) {
+          opacity: 0.6 !important;
+        }
+        .light-control {
+          display: none;
+        }
+        .chapter-content {
+          opacity: 1 !important;
+        }
+      </style></noscript
+    >
+  </body>
+</html>

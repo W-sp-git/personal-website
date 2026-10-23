@@ -1,0 +1,15 @@
+{
+  "name": "wang-shupeng-personal-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "王舒鹏的极北个人网站：峡湾、雪原、极光与交互式昼夜。",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check dist/app.js && node --check dist/scene.js && node --check dist/audio.js"
+  },
+  "dependencies": {
+    "gsap": "3.15.0"
+  }
+}
