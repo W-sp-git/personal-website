@@ -1,5 +1,7 @@
 # NORTHBOUND · 王舒鹏
 
+线上地址：https://wang-shupeng.vercel.app/
+
 王舒鹏的极北个人网站，包含峡湾、雪原、极光三段旅程和关于页。昼夜切换、WebGL 动效、飘雪与环境音均在浏览器端运行。
 
 ## 本地预览
