@@ -10,6 +10,7 @@
     "check": "node --check dist/app.js && node --check dist/scene.js && node --check dist/audio.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "gsap": "3.15.0"
   }
 }
